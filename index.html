@@ -12,9 +12,17 @@
       <header>ROCK PAPER SCISSORS</header>
       <div id="game-container">
         <ul id="score-board">
-          <li id="player">Player</li>
+          <li>
+            <ul id="player-display">
+              <li id="player-choice">?</li>
+              <li id="player">Player</li>
+            </ul>
+          </li>
           <li id="score">0 - 0</li>
-          <li id="computer">Computer</li>
+          <ul id="computer-display">
+            <li id="computer-choice">?</li>
+            <li id="computer">Computer</li>
+          </ul>
         </ul>
         <div id="game-text">
           Start the game by choosing rock, paper or scissors!
@@ -43,6 +51,12 @@
           />
         </a>
       </footer>
+    </div>
+    <div id="overlay"></div>
+    <div id="modal">
+      <h2>Game Over!</h2>
+      <p id="modal-text"></p>
+      <button id="new-game">Play Again</button>
     </div>
   </body>
 </html>

@@ -1,6 +1,12 @@
 let playerScore = 0;
 let computerScore = 0;
 
+const modal = document.getElementById("modal");
+const overlay = document.getElementById("overlay");
+const buttons = document.querySelectorAll("button");
+const playerChoiceDisplay = document.getElementById("player-choice");
+const computerChoiceDisplay = document.getElementById("computer-choice");
+
 const getComputerChoice = () => {
   const choices = ["rock", "paper", "scissors"];
   return choices[Math.floor(Math.random() * choices.length)];
@@ -35,11 +41,11 @@ const playRound = (playerSelection, computerSelection) => {
   return result;
 };
 
-const checkIfGameOver = (playerScore, computerScore) => {
+const checkIfGameOver = () => {
   return playerScore === 5 || computerScore === 5;
 };
 
-const checkWinner = (playerScore, computerScore) => {
+const checkWinner = () => {
   if (playerScore >= 5) {
     return "Congratulations, you won the game! You've triumphed over the opponent with a higher score.";
   } else {
@@ -52,14 +58,11 @@ const resetScore = () => {
   computerScore = 0;
 };
 
-const displayScore = () => {
-  const scoreBoard = document.getElementById("score");
-  scoreBoard.textContent = `${playerScore} - ${computerScore}`;
-};
-
-const displayText = (message) => {
-  const displayText = document.getElementById("game-text");
-  displayText.textContent = message;
+const resetDisplay = () => {
+  playerChoiceDisplay.innerHTML = "";
+  computerChoiceDisplay.innerHTML = "";
+  playerChoiceDisplay.textContent = "?";
+  computerChoiceDisplay.textContent = "?";
 };
 
 const gameLoop = (playersChoice) => {
@@ -76,20 +79,79 @@ const gameLoop = (playersChoice) => {
     displayText("It's a Tie!");
   }
 
+  displayChoices(playersChoice, computerChoice);
   displayScore();
 
-  if (checkIfGameOver(playerScore, computerScore)) {
-    const gameResult = checkWinner(playerScore);
-    displayText(gameResult);
-    resetScore();
+  if (checkIfGameOver()) {
+    gameOverModal();
   }
 };
 
-const buttons = document.querySelectorAll("button");
+const getImage = (choice) => {
+  const choices = {
+    rock: "assets/images/rock.svg",
+    paper: "assets/images/paper.svg",
+    scissors: "assets/images/scissors.svg",
+  };
+  const image = document.createElement("img");
+  image.src = choices[choice];
+  return image;
+};
+
+const displayChoices = (playerChoice, computerChoice) => {
+  const choices = {
+    rock: "assets/images/rock.svg",
+    paper: "assets/images/paper.svg",
+    scissors: "assets/images/scissors.svg",
+  };
+
+  const playerChoiceDisplay = document.getElementById("player-choice");
+  const computerChoiceDisplay = document.getElementById("computer-choice");
+
+  playerChoiceDisplay.innerHTML = "";
+  computerChoiceDisplay.innerHTML = "";
+
+  const playerImage = getImage(playerChoice);
+  const computerImage = getImage(computerChoice);
+
+  playerChoiceDisplay.appendChild(playerImage);
+  computerChoiceDisplay.appendChild(computerImage);
+};
+
+const displayScore = () => {
+  const scoreBoard = document.getElementById("score");
+  scoreBoard.textContent = `${playerScore} - ${computerScore}`;
+};
+
+const displayText = (message) => {
+  const displayText = document.getElementById("game-text");
+  displayText.textContent = message;
+};
+
+const gameOverModal = () => {
+  const modalText = document.getElementById("modal-text");
+  const gameResult = checkWinner(playerScore);
+  overlay.style.visibility = "visible";
+  modal.style.visibility = "visible";
+  modalText.textContent = gameResult;
+};
+
+const newGame = () => {
+  resetScore();
+  displayScore();
+  resetDisplay();
+  modal.style.visibility = "hidden";
+  overlay.style.visibility = "hidden";
+  displayText("New game begins!");
+};
 
 buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const playersChoice = button.id;
-    gameLoop(playersChoice);
-  });
+  if (button.id !== "new-game") {
+    button.addEventListener("click", () => {
+      const playersChoice = button.id;
+      gameLoop(playersChoice);
+    });
+  } else {
+    button.addEventListener("click", newGame);
+  }
 });
