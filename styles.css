@@ -27,7 +27,7 @@ body {
   height: 100vh;
   background-color: #3f3f46;
   font-family: "Badaboom", sans-serif;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   color: #dc2626;
   text-shadow: 1px 1px 1px #000000;
 }
@@ -168,7 +168,7 @@ footer {
 
 #modal {
   visibility: hidden;
-  max-width: 500px;
+  max-width: 600px;
   position: absolute;
   z-index: 2;
   display: flex;
@@ -177,27 +177,27 @@ footer {
   justify-content: center;
   align-items: center;
   border: 2px solid #18181b;
-  border-radius: 0.75rem;
+  border-radius: 10px;
   background-color: #27272a;
-  padding: 2.5rem;
+  padding-left: 14px;
+  padding-right: 14px;
 }
 
 #modal > h2 {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 60px;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
 }
 
 #modal-text {
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 32px;
   text-align: center;
-  padding: 16px;
+  padding: 8px;
 }
 
 #new-game {
   width: 160px;
   height: 60px;
   font-family: "Badaboom", sans-serif;
-  letter-spacing: 0.05em;
   color: #dc2626;
 }
