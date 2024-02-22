@@ -7,5 +7,56 @@
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div id="wrapper">
+      <header>ROCK PAPER SCISSORS</header>
+      <div id="game-container">
+        <ul id="score-board">
+          <li>
+            <ul id="player-display">
+              <li id="player-choice">?</li>
+              <li id="player">Player</li>
+            </ul>
+          </li>
+          <li id="score">0 - 0</li>
+          <ul id="computer-display">
+            <li id="computer-choice">?</li>
+            <li id="computer">Computer</li>
+          </ul>
+        </ul>
+        <div id="game-text">
+          Start the game by choosing rock, paper or scissors!
+        </div>
+        <div id="buttons--container">
+          <div id="buttons">
+            <button id="rock">
+              <img src="assets/images/rock.svg" alt="Rock icon" />
+            </button>
+            <button id="paper">
+              <img src="assets/images/paper.svg" alt="Paper icon" />
+            </button>
+            <button id="scissors">
+              <img src="assets/images/scissors.svg" alt="Scissors icon" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div>Created By aarnif</div>
+        <a href="https://github.com/aarnif" target="_blank" rel="noreferrer"
+          ><img
+            id="github-link"
+            src="assets/images/github.svg"
+            alt="GitHub Profile Link"
+          />
+        </a>
+      </footer>
+    </div>
+    <div id="overlay"></div>
+    <div id="modal">
+      <h2>Game Over!</h2>
+      <p id="modal-text"></p>
+      <button id="new-game">Play Again</button>
+    </div>
+  </body>
 </html>
